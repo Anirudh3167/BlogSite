@@ -1,0 +1,230 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    width: 100vw;
+
+    margin-top: 60px;
+    background-color: rgb(10,10,10);
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 300px;
+
+    padding-top: 10px;
+    border-right: 1px solid rgb(30,30,30);
+    overflow: scroll;
+    margin-bottom: 10px;
+}
+
+.editSpace {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+}
+
+.editBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 80px;
+    height: 30px;
+    
+    font-size: 18px;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 5px;
+
+    background-color: rgb(170,170,170);
+    color: rgb(20,20,20);
+}
+
+.photoSpace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 250px;
+}
+
+.dp {   /* dp --> Display Picture */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    font-size: 60px;
+
+    background-color: rgb(30,30,30);
+    color: rgb(210,210,210);
+    margin: 10px;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    color: white;
+    margin: 10px;
+    margin-top: 0px;
+    font-size: 24px;
+}
+
+.detailsSpace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+
+}
+
+.detail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    margin: 10px;
+    width: 100%;
+}
+
+.detailName {
+    display: flex;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(20,170,20);
+}
+
+.detail > input {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: calc(100% - 10px);
+
+    font-size: 18px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 0px;
+    /* border-bottom: 1px solid rgb(40,40,40); */
+
+    background-color: transparent;
+    color:rgb(210,210,210);
+}
+
+.lineBreak {
+    display: flex;
+    width: 100%;
+    height: 2px;
+    margin: 10px;
+    margin-left: 0;
+    background: rgba(210,210,210,0.15);
+}
+
+.settingsBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    font-size: 24px;
+    font-weight: 400;
+    padding-left: 10px;
+    margin-bottom: 10px;
+
+    color: rgb(210,210,210);
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 300px);
+    min-width: 280px;
+    
+    height: 100vh;
+    padding:10px;
+    overflow: scroll;
+}
+
+.userBlogs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid rgb(30,30,30);
+    border-radius: 10px;
+
+    width: calc(100% - 20px);
+    min-width: 280px;
+    height: 300px;
+
+    color: white;
+}
+
+.newBlog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+
+    background-color: rgb(20,170,20);
+    color: white;
+}
+
+.likedBlogs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid rgb(30,30,30);
+    border-radius: 10px;
+    
+    width: calc(100% - 20px);
+    min-width: 280px;
+    height: 300px;
+
+    color: white;
+}

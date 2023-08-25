@@ -1,0 +1,226 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    background-color: rgb(0,0,0);
+}
+
+.mainContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100vw;
+    min-height: 300px;
+
+    padding: 10px;
+    margin: 10px;
+    margin-top: 60px;
+}
+
+.BlogTags {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    
+    width: calc(100% - 60px);
+    min-width: 280px;
+
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+
+    background-color: rgba(30,30,30,0.4);
+}
+
+.Tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    border-radius: 5px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+
+    background-color: rgb(60,60,60);
+    color: black;
+}
+
+.BlogTitle {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    font-size: 40px;
+    font-weight: 700;
+
+    color: white;
+}
+
+.BlogSubscript {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-width: 280px;
+
+    margin: 10px;
+    font-style: italic;
+
+    color: rgb(170,170,170);
+}
+
+.lineBreak {
+    width: calc(100% - 60px);
+    min-width: 280px;
+    height: 2px;
+
+    background-color: rgba(50,50,50,0.7);
+}
+
+.BlogContent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    min-height: 400px;
+    width: calc(100% - 60px);
+    min-width: 280px;
+
+    padding: 20px;
+    font-size: 20px;
+
+    color: rgb(210,210,210);
+}
+
+.Stats {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    font-size: 20px;
+
+    margin: 10px;
+
+    color: rgb(150,200,170);
+}
+
+.CommentName {
+    font-size: 25px;
+    font-weight: 400;
+
+    margin: 10px;
+
+    color: rgb(210,210,210);
+}
+
+.commentInputContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.commentInputBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 800px;
+    min-width: 230px;
+    width: calc(100% - 70px);
+    height: 40px;
+
+    padding: 5px;
+    font-size: 17px;
+    color: white;
+    background-color: black;
+    border: 2px solid rgb(40,40,04);
+    border-radius: 5px;
+}
+
+.commentInputBox::placeholder {color: rgb(130,130,130);}
+
+.commentSendBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 40px;
+
+    margin: 0px 5px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+}
+
+.Comments {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: calc(100% - 60px);
+
+    overflow: scroll;
+}
+
+.Comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 200px;
+
+    border: 1px solid black;
+    color: rgb(210,210,210);
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.commentLoginContanier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    font-size: 16px;
+}
+
+.commentLoginBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 40px;
+
+    padding: 5px;
+    margin: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(31, 31, 168);
+    color: white;
+}

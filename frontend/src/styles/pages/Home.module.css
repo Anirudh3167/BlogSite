@@ -1,0 +1,61 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: black;
+}
+
+.pageOne {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    width: 100vw;
+    height: 100vh;
+    
+    margin-top: 60px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    color: white;
+    background-image: url("https://media.istockphoto.com/id/1209030907/vector/abstract-triangular-background.jpg?s=612x612&w=0&k=20&c=WL6sXFy_wr1z7Yk_lPbJ2Zhd2EjoM1eomgCN8C05Q6U=");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.pageHead {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    width: 30vw;
+    min-width: 300px;
+
+    padding: 10px;
+    font-size: 40px;
+    border-bottom: 2px solid white;
+}
+
+.pageContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40vw;
+    min-width: 300px;
+
+    margin: 10px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 300;
+}

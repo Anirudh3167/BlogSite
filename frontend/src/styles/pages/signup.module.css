@@ -1,0 +1,92 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    min-height: 100vh;
+    
+    background: linear-gradient(rgb(10, 147, 165),rgb(50, 50, 124));
+}
+
+.loginBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 280px;
+    height: 400px;
+
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 200px rgb(210,210,210);
+
+    background-color: white;
+}
+
+.inputBox {
+    height: 40px;
+    width: 100%;
+
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid rgb(18, 109, 121);
+    border-radius: 10px;
+
+    z-index: 0;
+}
+
+.signInOption {
+    display: flex;
+
+    font-size: 14px;
+    padding: 10px;
+    margin: 5px;
+
+    width: 100%;   
+}
+
+.signUpButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+
+    font-size: 18px;
+    color: white;
+    background-color: rgb(18, 109, 121);
+    cursor: pointer;
+}
+
+.oauthText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    color: black;
+}
+
+.oauthIcons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin: 10px;
+}

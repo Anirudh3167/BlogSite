@@ -1,0 +1,207 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    position:absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    height: 60px;
+    width: 100vw;
+
+    top: 0;
+
+    background-color: rgb(0,0,0);
+}
+
+.logoSpace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60px;
+    width: 120px;
+
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: 700;
+
+    color: rgb(20,170,20);
+}
+
+.contentSpace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    width: calc(100vw - 120px);
+}
+
+.hamburgerMenu {
+    display: none;
+}
+
+.contents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    width: calc(100vw - 120px);
+    height: 40px;
+    margin-top: 20px;
+}
+
+.contents > .contentItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 400;
+
+    width: 120px;
+    height: 40px;
+
+    color: white;
+    cursor: pointer;
+}
+
+
+.subContentName {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    
+    font-size: 18px;
+    font-weight: 400;
+
+    width: 120px;
+    height: 40px;
+
+}
+
+.subContentItem {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    background-color: rgb(15,15,15);
+}
+
+.contentItem:hover > .subContentItem {                  /* Hover action */
+    display: flex;
+}
+
+.subContentItem > .contentItem {
+    padding: 10px;
+}
+
+
+.signOut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 20px;
+    margin-top: -10px;
+
+    width: 110px;
+    height: 40px;
+
+    color: white;
+
+    border: 1px solid white;
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .contents {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        display: none;
+        margin-top: 310px;
+        margin-right: 10px;
+        height: auto;
+    }
+    .contentSpace {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .hamburgerMenu {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        right: 10px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+    }
+    .hamburgerLine {
+        width: 30px;
+        height: 2px;
+
+        background-color: rgb(210,210,210);
+        transition: 1s;
+    }
+    .hamburgerMenu > .before {
+        transform: translateY(10px) rotate(0deg);
+    }
+    .hamburgerMenu > .after {
+        transform: translateY(-10px) rotate(0deg);
+    }
+    
+    .active > .before {
+        transform: translateY(2px) rotate(45deg);
+    }
+    .active > .after {
+        transform: translateY(-2px) rotate(-45deg);
+    }
+    .active > .middle {
+        opacity: 0;
+    }
+    .active ~ .contents {
+        display: flex;
+    }
+    .active ~ .contents > .contentItem:hover > .subContentName {
+        height: 40px;
+    }
+    .contents > .contentItem {
+        width: 200px;
+        height: 50px;
+        margin: 0px;
+        background-color: black;
+        justify-content: center;
+    }
+    .contentItem > .subContentName {
+        align-items: center;
+        justify-content: center;
+    }
+    .contents > .contentItem:hover {
+        min-height:50px;
+        height: fit-content;
+    }
+    .contents > .signOut {
+        margin-top: 0px;
+    }
+  }
+  

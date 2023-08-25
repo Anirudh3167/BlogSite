@@ -1,0 +1,17 @@
+# Ignore the VirtualEnv directory and its contents
+*/VirtualEnv/
+
+# Ignore the node_modules directory and its contents
+*/node_modules/
+
+# Ignores the pycache in all django apps.
+*/__pycache__/
+
+# Ignores sqlite3 database.
+*.sqlite3
+
+*.pyc
+*.o
+*.dll
+*.exe
+*.env
