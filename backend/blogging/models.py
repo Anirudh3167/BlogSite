@@ -15,7 +15,9 @@ class Blogs(models.Model):
         author (ForeignKey): The author of the blog post.
         tags (TextField): Tags associated with the blog.
         last_updated (DateTimeField): The timestamp of the last update.
-
+        likes (IntegerField): The likes recieved
+        dislikes (IntegerField): The dislikes recieved
+        views (IntegerField): The views recieved
     Functions:
         - updateBlog(new_title, new_content): Updates the title and content of the blog.
         - deleteBlog(): Deletes the blog post.
@@ -43,7 +45,9 @@ class Blogs(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     tags = models.TextField(default="Blog")
     last_updated = models.DateTimeField(default=datetime.now())
-
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
     def updateBlog(self,title,content,last_updated):
         '''
         Update the title and content of the blog.
@@ -71,7 +75,25 @@ class Blogs(models.Model):
             None
         '''
         self.delete()
-
+        
+    def update_dislikes(self, val):
+        '''
+        Updates the dislike count
+        '''
+        self.dislikes += val
+        
+    def update_likes(self, val):
+        '''
+        Updates the like count
+        '''
+        self.likes += val
+        
+    def update_views(self, val):
+        '''
+        Updates the view count
+        '''
+        self.views += val
+        
     @classmethod
     def filterBlogs(cls,text):
         '''
@@ -120,7 +142,10 @@ class Comments(models.Model):
         time (DateTimeField): The timestamp of when the comment was created.
         last_updated (DateTimeField): The timestamp of the last update.
         blog_id (ForeignKey): The blog post to which the comment belongs.
-
+        likes (IntegerField): The likes recieved
+        dislikes (IntegerField): The dislikes recieved
+        views (IntegerField): The views recieved
+    
     Functions:
         - updateComment(new_content): Updates the content of the comment.
         - deleteComment(): Deletes the comment.
@@ -150,7 +175,10 @@ class Comments(models.Model):
     time = models.DateTimeField(default=datetime.now())
     last_updated = models.DateTimeField(default=datetime.now())
     blog_id = models.ForeignKey(Blogs,on_delete=models.CASCADE)
-
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
+    
     def updateComment(self,content,last_updated):
         '''
         Update the content of the comment.
@@ -176,7 +204,25 @@ class Comments(models.Model):
             None
         '''
         self.delete()
-    
+
+    def update_dislikes(self, val):
+        '''
+        Updates the dislike count
+        '''
+        self.dislikes += val
+        
+    def update_likes(self, val):
+        '''
+        Updates the like count
+        '''
+        self.likes += val
+        
+    def update_views(self, val):
+        '''
+        Updates the view count
+        '''
+        self.views += val
+        
     @classmethod
     def filterComments(cls,text):
         '''
