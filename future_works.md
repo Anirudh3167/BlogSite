@@ -5,6 +5,8 @@
 - [ ] Live Deployment
 - [ ] Comments Working
 - [ ] Creating About and Contact Pages
+- [ ] Creating a better Readme
+- [ ] OAuth Options
 
 ## Far Future Works
 - [ ] Deploying an Ai chatbot (via APIs)
