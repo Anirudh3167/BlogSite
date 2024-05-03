@@ -3,11 +3,14 @@ import Styles from '@/styles/pages/publish.module.css'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function Publish() {
     const [title,setTitle] = useState("");
-    const [tags,setTags] = useState([]);
+    const [tags,setTags] = useState("");
     const [content,setContent] = useState("");
+    const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -16,9 +19,23 @@ export default function Publish() {
         }
         console.log(data);
         const resp = await axios.post("http://localhost:8000/create-blog",data,{withCredentials:true});
+        const id  = await resp.data['blog_id'];
         console.log(resp);
+
+        router.push(`/blog-view/${id}`)
     }
+    
+    useEffect(() => {
+        const isAuthenticated = async () => {
+            const res = await axios.get('http://localhost:8000/api/user/isLogged',{withCredentials:true});
+            const r = await res.data;
+            setLoading(false);
+            if (!r.status) router.push('/signin');
+        }
+        isAuthenticated();
+      }, []);
   return (
+    loading ? <h1> Loading... </h1> :
     <div className={Styles.mainWrapper}>
         <Navbar />
         <div className={Styles.mainContainer}>
@@ -34,7 +51,7 @@ export default function Publish() {
                 <div className={Styles.contents}>
                     <div className={Styles.label}> Tags:</div>
                     <input type="text" name="tags"
-                    onChange={(event) => {setTags(event.target.value.split("/"));}}
+                    onChange={(event) => {setTags(event.target.value);}}
                      placeholder='Use / to seperate tags' />
                 </div>
                 <div className={Styles.contents}>

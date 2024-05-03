@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 
 export default function Profile() {
@@ -11,14 +12,23 @@ export default function Profile() {
     const [username,setUserName] = useState('');
     const [email,setEmail] = useState('');
     const [Auth,setAuth] = useState(false);
+    const [blogs, setBlogs] = useState([]);
+    const router = useRouter();
     
     useEffect(() => {
+        const userBlogs = async (username) => {
+            const res = await axios.get('http://localhost:8000/user-blogs',{params:{'username': username}});
+            const r = await res.data.blogs;
+            setBlogs(JSON.parse(r));
+        }
         const getUser = async () => {
-            const response = await axios.get('http://localhost:8000/api/user',{withCredentials:true});
+            const res = await axios.get('http://localhost:8000/api/user',{withCredentials:true});
             
-            setUserName(response.data.username);
-            setEmail(response.data.email)
+            if (!res.data.status) { alert(res.data.reason); router.push('/');}
+            setUserName(res.data.user.username);
+            setEmail(res.data.user.email)
             setAuth(true);
+            userBlogs(res.data.user.username);
         }
         getUser();
       }, []);
@@ -41,11 +51,11 @@ export default function Profile() {
                 <div className={Styles.detailsSpace}>
                     <div className={Styles.detail}>
                         <div className={Styles.detailName}> Name: </div>
-                        <input type="text" name="name" value="Anirudh" disabled={true} />
+                        <input type="text" name="name" value={username} disabled={true} />
                     </div>
                     <div className={Styles.detail}>
                         <div className={Styles.detailName}> Email: </div>
-                        <input type="email" name="email" value={email} disabled={true} />
+                        <input type="email" name="email" value={email} disabled={true} readOnly />
                     </div>
                     <div className={Styles.detail}>
                         <div className={Styles.detailName}> Mobile: </div>
@@ -62,13 +72,23 @@ export default function Profile() {
             </div>
             {/* Right section */}
             <div className={Styles.rightContainer}>
-                <div className={Styles.userBlogs}>
-                    Start creating new blogs by from here.
-                    <Link href="/publish" className={Styles.newBlog}> Create Blog</Link>
-                </div>
+                    { blogs.length < 1 ?
+                    <div className={Styles.userBlogs}>
+                        Start creating new blogs by from here.
+                        <Link href="/publish" className={Styles.newBlog}> Create Blog</Link>
+                    </div> :
+                    <div className={Styles.userBlogs} style={{alignItems:'flex-start',justifyContent:'flex-start', gap:'10px'}}>
+                        {blogs.map((blog,index) => {
+                            return(
+                                <Link href={`/blog-view/${blog.id}`} className={Styles.userblog} key={index}> {blog.title} </Link>
+                            )
+                        })}
+                    </div>
+                    }
 
                 <div className={Styles.likedBlogs}>
-                    You have no liked blogs.
+                    You have no liked blogs. Start Watching the latest blog from
+                    <Link href="/feed" className={Styles.newBlog}> feed </Link>
                 </div>
             </div>
         </div>

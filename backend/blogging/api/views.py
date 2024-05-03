@@ -11,11 +11,12 @@ from django.contrib.auth.hashers import make_password
 class UserDetails(APIView):
     def get(self,request):
         cookies = request.COOKIES.get('jwt_access_token')
-        tokens = {}
         data = AccessToken(cookies)
         user = User.objects.filter(id = data['user_id']).first()
+        if user == None:
+            return Response({ 'status': False, 'reason': 'User not found'})
         user = UserInfoSerializer(user)
-        return Response(user.data)
+        return Response({'status': True, 'user': user.data})
         # return Response({"username":"abce","email":"Dont ask me"})
     
 class LogoutView(APIView):
@@ -46,7 +47,6 @@ class LoginView(APIView):
             response.set_cookie(key='jwt_access_token', value=access_token,httponly=True)
             response.set_cookie(key='jwt_refresh_token', value=refresh_token,httponly=True)
 
-            print(response.cookies)
             return response
         else:
             return Response({'message': 'invalid credentials'}, status=401)
@@ -56,7 +56,6 @@ class RegisterView(APIView):
         username = request.data.get('username')
         email = request.data.get('email')
         password = request.data.get('password')
-
         User.objects.create(username=username,email=email,password=make_password(password)).save()
 
         # Perform authentication

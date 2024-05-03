@@ -12,7 +12,9 @@
     width: 100vw;
     min-height: 100vh;
     
-    background: linear-gradient(rgb(10, 147, 165),rgb(50, 50, 124));
+    /* background: linear-gradient(rgb(10, 147, 165),rgb(50, 50, 124)); */
+    background-color: rgba(230,230,230,0.95);
+    color: black;
 }
 
 .loginBox {
@@ -21,26 +23,30 @@
     justify-content: center;
     flex-direction: column;
 
-    width: 280px;
+    min-width: 280px;
+    width: calc(100% - 20px);
+    max-width: 350px;
     height: 400px;
 
     margin: 10px;
-    padding: 10px;
-    box-shadow: 0px 0px 200px rgb(210,210,210);
+    padding: 20px;
+    /* box-shadow: 0px 0px 200px rgb(210,210,210); */
+    box-shadow: 0 0 20px rgba(40,40,40,0.2);
 
     background-color: white;
 }
 
 .inputBox {
-    height: 40px;
+    height: 50px;
     width: 100%;
-
-    padding: 10px;
-    margin: 5px;
-    border: 2px solid rgb(18, 109, 121);
+    
+    background: transparent;
+    border: 0;  padding: 10px;  margin: 5px;
+    border: 1px solid rgb(18, 109, 121);
+    color: black;   font-size: 16px;    font-family: sans-serif;
     border-radius: 10px;
-
     z-index: 0;
+    outline: none;
 }
 
 .signInOption {
@@ -66,6 +72,7 @@
     color: white;
     background-color: rgb(18, 109, 121);
     cursor: pointer;
+    border: 0;
 }
 
 .oauthText {
@@ -88,5 +95,5 @@
 
     width: 100%;
 
-    margin: 10px;
+    margin: 10px;   padding: 20px;
 }

@@ -8,3 +8,5 @@ PyJWT==1.7.1
 pytz==2023.3
 sqlparse==0.4.4
 tzdata==2023.3
+pymongo[snappy,gssapi,srv,tls]
+dnspython

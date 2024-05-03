@@ -81,18 +81,21 @@ class Blogs(models.Model):
         Updates the dislike count
         '''
         self.dislikes += val
+        self.save()
         
     def update_likes(self, val):
         '''
         Updates the like count
         '''
         self.likes += val
+        self.save()
         
     def update_views(self, val):
         '''
         Updates the view count
         '''
         self.views += val
+        self.save()
         
     @classmethod
     def filterBlogs(cls,text):
@@ -210,18 +213,21 @@ class Comments(models.Model):
         Updates the dislike count
         '''
         self.dislikes += val
+        self.save()
         
     def update_likes(self, val):
         '''
         Updates the like count
         '''
         self.likes += val
+        self.save()
         
     def update_views(self, val):
         '''
         Updates the view count
         '''
         self.views += val
+        self.save()
         
     @classmethod
     def filterComments(cls,text):
