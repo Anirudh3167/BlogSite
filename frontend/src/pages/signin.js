@@ -18,10 +18,13 @@ export default function SignIn() {
         const post_data = {username,password}
         const response = await axios.post("http://localhost:8000/api/login",post_data,{withCredentials:true,headers:{"Content-Type":"application/json"}})
         const data = response.data;
-        const cookies = response.headers;
-        console.log(cookies);
-        console.log(data);
-        router.push('/profile');
+        if (!data.status) {router.reload();}
+        else {
+            const cookies = response.headers;
+            console.log(cookies);
+            console.log(data);
+            router.push(`/profile/${username}`);
+        }
     }
     
   return (

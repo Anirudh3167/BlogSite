@@ -1,23 +1,18 @@
-from django.contrib.auth import login, logout
-from rest_framework.authentication import authenticate
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
-from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
-from django.contrib.auth.models import User
-from .api.serializers import *
-from rest_framework_simplejwt.views import TokenObtainPairView
-from django.contrib.auth.hashers import make_password
-from django.shortcuts import render
+from rest_framework_simplejwt.tokens import AccessToken
+from BasicDetails.serializers import *
 import json
-
 from .models import Blogs
+from BasicDetails.models import CustomUserDetails
+
 # Create your views here.
 class createBlog(APIView):
     def post(self,request):
         try:
             cookies = request.COOKIES.get('jwt_access_token')
             data = AccessToken(cookies)
-            user = User.objects.filter(id = data['user_id'])[0]
+            user = CustomUserDetails.objects.filter(id = data['user_id'])[0]
             user = UserInfoSerializer(user)
 
             blog = Blogs.objects.create( author = user.instance, 
@@ -69,7 +64,7 @@ class getUserBlogs(APIView):
     def get(self, request):
         try:
             print(request.GET)
-            user = User.objects.filter( username = request.GET.get('username') ).first()
+            user = CustomUserDetails.objects.filter( username = request.GET.get('username') ).first()
             if user == None:
                 return Response({"status": False, "Reason": "User Not Found"})
             user = UserInfoSerializer(user)

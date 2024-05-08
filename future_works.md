@@ -1,3 +1,7 @@
+## Urgent Works
+- [ ] Custom User Model
+- [ ] Liked blogs Feature
+
 ## Future Works
 - [ ] Maintaining the metrics (Likes, Dislikes and Shares)
 - [ ] Profile Update Option

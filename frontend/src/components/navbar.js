@@ -9,6 +9,7 @@ export default function Navbar() {
 
   const [hamburgerActive, setHamburgerActive] = useState(false);
   const [Authenticated,setAuthenticated] = useState(false);
+  const [uname, setUname] = useState('');
   const router = useRouter();
 
   const handleHamburger = () => {
@@ -25,7 +26,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const userLoggedIn = async () => {
-      const resp = await axios.get("http://localhost:8000/api/user/isLogged",{withCredentials:true});
+      const resp = await axios.get("http://localhost:8000/api/user",{withCredentials:true});
 
       if (resp.data.status) {setAuthenticated(true);}
     }
@@ -56,7 +57,7 @@ export default function Navbar() {
                     <Link href="/feed" className={Styles.contentItem}> Feed </Link>
                     { Authenticated ? (
                           <>
-                          <Link href="/profile" className={Styles.contentItem}> Profile </Link>
+                          <Link href={`/profile/${uname}`} className={Styles.contentItem}> Profile </Link>
                           <div className={Styles.contentItem}>
                             <div onClick={() => {signOut();}} className={Styles.signOut}> Sign Out </div>
                           </div>

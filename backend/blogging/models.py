@@ -1,6 +1,9 @@
 from django.db import models
+
+# Create your models here.
+from django.db import models
 from django.db.models import Q
-from django.contrib.auth.models import User
+from BasicDetails.models import CustomUserDetails
 from datetime import datetime
 
 # Create your models here.
@@ -18,6 +21,8 @@ class Blogs(models.Model):
         likes (IntegerField): The likes recieved
         dislikes (IntegerField): The dislikes recieved
         views (IntegerField): The views recieved
+        interests (TextField): Special SEPERATED TAGS for different interests
+        liked_blogs (TextField): Special SEPERATED TAGS for blog ids
     Functions:
         - updateBlog(new_title, new_content): Updates the title and content of the blog.
         - deleteBlog(): Deletes the blog post.
@@ -42,7 +47,7 @@ class Blogs(models.Model):
     title = models.TextField(default="No Title")
     content = models.TextField(default="No Content")
     time = models.DateTimeField(default=datetime.now())
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUserDetails,on_delete=models.CASCADE)
     tags = models.TextField(default="Blog")
     last_updated = models.DateTimeField(default=datetime.now())
     likes = models.IntegerField(default=0)
@@ -96,7 +101,7 @@ class Blogs(models.Model):
         '''
         self.views += val
         self.save()
-        
+
     @classmethod
     def filterBlogs(cls,text):
         '''
@@ -173,7 +178,7 @@ class Comments(models.Model):
     '''
     # As we are using the built-in id. So no need of this
     # id = models.CharField(max_length=255,primary_key=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUserDetails,on_delete=models.CASCADE)
     content = models.TextField(default="")
     time = models.DateTimeField(default=datetime.now())
     last_updated = models.DateTimeField(default=datetime.now())
