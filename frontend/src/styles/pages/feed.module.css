@@ -39,6 +39,22 @@
 }
 .blogContainer:hover {width: calc(80% + 60px); max-width: 860px;}
 
+.blogTopSection  {
+    display: flex;  align-items: center;    justify-content: space-between;
+    flex-direction: row;
+
+    width: 100%;    padding: 10px;  gap: 10px;
+}
+
+.deleteBlogBtn {
+    display: flex;  align-items: center;    justify-content: center;
+    
+    width: auto;    height: 100%;
+
+    padding: 10px;  border-radius: 10px;    background-color: red;  color: white;
+    cursor: pointer;
+}
+
 .blogTitle {
     display: flex;
     align-items: center;
@@ -64,3 +80,41 @@
     min-height: 60px;
     padding: 10px;
 }
+
+.blogBottomDetails {
+    display: flex;  align-items: center;    justify-content: flex-start;
+    flex-direction: row;    gap: 10px;
+
+    width: auto;
+}
+
+.blogAuthor {
+    display: flex;  align-items: center;    justify-content: center;
+
+    width: auto;    text-decoration: underline; color: white;
+}
+
+.Stats {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    min-width: 280px;
+
+    font-size: 20px;
+
+    margin: 10px;   gap: 10px;
+
+    color: rgb(150,200,170);
+}
+
+.statsItemContainer {
+    display: flex;  align-items: center;    justify-content: center;    flex-direction: row;
+    gap: 5px;    padding: 0 10px 0 10px; position: relative;    cursor: pointer;
+}
+
+.statsItemLogo {font-size: 28px;}
+
+.statsItemCount {font-size: 18px;   font-family: sans-serif;}

@@ -3,25 +3,24 @@ import React, { useState } from 'react'
 import Styles from '@/styles/pages/signup.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { LoginUser } from './api/user-authentication';
 import Head from 'next/head';
-import axios from 'axios';
+import { login } from '@/apiFunctions';
 
 export default function SignIn() {
     const [username,setUserName] = useState('');
     const [password,setPassword] = useState('');
     const router = useRouter();
+    const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     const submit = async (e) => {
         e.preventDefault();
+        // const response = await axios.post(backend_url + "/api/login",post_data,{withCredentials:true,headers:{"Content-Type":"application/json"}})
 
-        const post_data = {username,password}
-        const response = await axios.post("http://localhost:8000/api/login",post_data,{withCredentials:true,headers:{"Content-Type":"application/json"}})
-        const data = response.data;
+        const data = await login({username,password});
         if (!data.status) {router.reload();}
         else {
-            const cookies = response.headers;
-            console.log(cookies);
+            // const cookies = response.headers;
+            // console.log(cookies);
             console.log(data);
             router.push(`/profile/${username}`);
         }
@@ -42,7 +41,7 @@ export default function SignIn() {
 
                 <div className={Styles.signInOption}> 
                     New user? &nbsp;
-                    <Link href="http://127.0.0.1:3000/signup" style={{color:"blue",textDecoration:"underline"}}>Signup</Link>
+                    <Link href="/signup" style={{color:"blue",textDecoration:"underline"}}>Signup</Link>
                     </div>
                 <button className={Styles.signUpButton} type='submit'> Sign In </button>
 

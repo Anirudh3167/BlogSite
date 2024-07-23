@@ -4,22 +4,26 @@ import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { IsAuthenticated, createBlog, getUser } from '@/apiFunctions'
 
 export default function Publish() {
     const [title,setTitle] = useState("");
     const [tags,setTags] = useState("");
     const [content,setContent] = useState("");
     const [loading, setLoading] = useState(true);
+    const [uname, setUName] = useState('');
     const router = useRouter();
+    const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {
-            title, tags, content,time : new Date()
+            title, tags, content,time : Date().toString().slice(0,33)
         }
         console.log(data);
-        const resp = await axios.post("http://localhost:8000/create-blog",data,{withCredentials:true});
-        const id  = await resp.data['blog_id'];
+        // const resp = await axios.post(backend_url + "/create-blog",data,{withCredentials:true});
+        const resp = await createBlog(data);
+        const id  = await resp['blog_id'];
         console.log(resp);
 
         router.push(`/blog-view/${id}`)
@@ -27,17 +31,18 @@ export default function Publish() {
     
     useEffect(() => {
         const isAuthenticated = async () => {
-            const res = await axios.get('http://localhost:8000/api/user/isLogged',{withCredentials:true});
-            const r = await res.data;
+            // const res = await axios.get(backend_url + '/api/user/isLogged',{withCredentials:true});
+            const r = await getUser();
             setLoading(false);
             if (!r.status) router.push('/signin');
+            else {setUName(r.user.username);}
         }
         isAuthenticated();
       }, []);
   return (
     loading ? <h1> Loading... </h1> :
     <div className={Styles.mainWrapper}>
-        <Navbar />
+        <Navbar uname={uname} />
         <div className={Styles.mainContainer}>
             <div className={Styles.formContainer}>
 
@@ -64,7 +69,7 @@ export default function Publish() {
 
                 <div className={Styles.btns}>
                     <button type='submit' onClick={(e) => {handleSubmit(e)}} className={Styles.submitBtn} style={{backgroundColor:"rgb(20,170,20)"}}> Submit </button>
-                    <button type='submit' className={Styles.submitBtn} style={{backgroundColor:"rgb(210,210,210)"}}> Cancel </button>
+                    <button type='submit' className={Styles.submitBtn} style={{backgroundColor:"rgb(210,210,210)"}} onClick={()=>{router.push(`/my-blogs`)}}> Cancel </button>
                 </div>
             </div>
         </div>

@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from '@/styles/pages/Home.module.css'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Link from 'next/link'
+import { getUser } from '@/apiFunctions'
 
 export default function Home() {
+  const [uname, setUName] = useState('');
+  useEffect(()=>{
+
+    const loadUser = async () => {
+      const res = await getUser();
+      if (res.status) setUName(res.user.username);
+    }
+    loadUser();
+  },[]);
   return (
     <div className={Styles.mainWrapper}>
-        <Navbar />
+        <Navbar uname={uname} />
         <div className={Styles.mainContainer}>
             <div className={Styles.pageOne}>
                 <div className={Styles.pageHead}>Welcome to BlogSite</div>

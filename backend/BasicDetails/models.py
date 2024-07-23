@@ -3,8 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class CustomUserDetails(AbstractUser):
-    interests = models.TextField(default='AI[<#SEP#>]ML[<#SEP#>]Robotics') # Contains the interests concatenated
-    liked_blogs = models.TextField(default='') # Contains the blog id (string) concatenated
+    interests = models.TextField(default='BlogSite, Blogging', blank=True) # Contains the interests concatenated
+    liked_blogs = models.TextField(default='', blank=True) # use <#SEP_USER#> as seperator for blog ids
+    disliked_blogs = models.TextField(default='', blank=True) # use <#SEP_USER#> as seperator for blog ids
+    liked_comments = models.TextField(default='', blank=True) # use <#SEP_USER#> as seperator for comment ids
+    disliked_comments = models.TextField(default='', blank=True) # use <#SEP_USER#> as seperator for comment ids
+    followed_users = models.ManyToManyField('self')
 
     def update_liked_blog(self, blog_id, update_type = 'add'):
         if update_type.lower() == 'add':

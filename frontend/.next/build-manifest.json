@@ -25,6 +25,21 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/blog-view/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/blog-view/[id].js"
+    ],
+    "/feed": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/feed.js"
+    ],
+    "/my-blogs": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/my-blogs.js"
+    ],
     "/profile/[username]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

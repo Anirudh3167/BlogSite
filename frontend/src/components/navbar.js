@@ -2,36 +2,19 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Styles from '@/styles/components/navbar.module.css'
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
+import { logout } from '@/apiFunctions';
 
-export default function Navbar() {
+export default function Navbar({ uname }) {
 
   const [hamburgerActive, setHamburgerActive] = useState(false);
-  const [Authenticated,setAuthenticated] = useState(false);
-  const [uname, setUname] = useState('');
   const router = useRouter();
 
   const handleHamburger = () => {
     setHamburgerActive(!hamburgerActive);
   }
 
-  const signOut = async () => {
-    const resp = await axios.post("http://localhost:8000/api/logout",{},{withCredentials:true});
-
-    if (resp.data.status) {
-        router.push("/");
-    }
-  }
-
-  useEffect(() => {
-    const userLoggedIn = async () => {
-      const resp = await axios.get("http://localhost:8000/api/user",{withCredentials:true});
-
-      if (resp.data.status) {setAuthenticated(true);}
-    }
-    userLoggedIn();
-  })
+  const signOut = async () => (await logout()).status && router.push("/");
 
   return (
     <div className={Styles.mainWrapper}>
@@ -55,7 +38,7 @@ export default function Navbar() {
                       </div>  
                     </div>
                     <Link href="/feed" className={Styles.contentItem}> Feed </Link>
-                    { Authenticated ? (
+                    { uname && uname !== '' ? (
                           <>
                           <Link href={`/profile/${uname}`} className={Styles.contentItem}> Profile </Link>
                           <div className={Styles.contentItem}>

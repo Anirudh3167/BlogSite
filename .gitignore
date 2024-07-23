@@ -4,6 +4,7 @@ VirtualEnv/
 # Ignore the node_modules directory and its contents
 */node_modules/
 .next/static/
+.next/*
 
 # Ignores the pycache in all django apps.
 */__pycache__/

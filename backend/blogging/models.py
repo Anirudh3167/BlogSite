@@ -25,7 +25,6 @@ class Blogs(models.Model):
         liked_blogs (TextField): Special SEPERATED TAGS for blog ids
     Functions:
         - updateBlog(new_title, new_content): Updates the title and content of the blog.
-        - deleteBlog(): Deletes the blog post.
         - filterBlogs(text): Returns blogs that match the given text in title, content, or author name.
         - getBlogs(): Returns all blogs.
 
@@ -34,10 +33,7 @@ class Blogs(models.Model):
         new_blog = Blogs.objects.create(title="Sample Title", content="Sample Content", author=user_instance)
 
         # Updating a blog
-        new_blog.updateBlog("Updated Title", "Updated Content")
-
-        # Deleting a blog
-        new_blog.deleteBlog()
+        new_blog.updateBlog("Updated Title", "Updated Content", "New Tags)
 
         # Filtering blogs
         filtered_blogs = Blogs.filterBlogs("example")
@@ -46,14 +42,15 @@ class Blogs(models.Model):
     # id = models.CharField(max_length=255,primary_key=True)
     title = models.TextField(default="No Title")
     content = models.TextField(default="No Content")
-    time = models.DateTimeField(default=datetime.now())
+    time = models.CharField(default=str(datetime.now()), max_length = 40)
     author = models.ForeignKey(CustomUserDetails,on_delete=models.CASCADE)
-    tags = models.TextField(default="Blog")
-    last_updated = models.DateTimeField(default=datetime.now())
+    tags = models.TextField(default="Blog",blank=True)
+    last_updated = models.CharField(default=str(datetime.now()), max_length = 40)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    def updateBlog(self,title,content,last_updated):
+    blog_comments = models.TextField(default='',blank=True) # Concatenate using ,
+    def updateBlog(self,title = None,content = None,tags = None):
         '''
         Update the title and content of the blog.
 
@@ -64,42 +61,10 @@ class Blogs(models.Model):
         Returns:
             None
         '''
-        self.title = title
-        self.content = content
-        self.last_updated = last_updated
-        self.save()
-
-    def deleteBlog(self):
-        '''
-        Delete the blog post.
-
-        Args:
-            None
-
-        Returns:
-            None
-        '''
-        self.delete()
-        
-    def update_dislikes(self, val):
-        '''
-        Updates the dislike count
-        '''
-        self.dislikes += val
-        self.save()
-        
-    def update_likes(self, val):
-        '''
-        Updates the like count
-        '''
-        self.likes += val
-        self.save()
-        
-    def update_views(self, val):
-        '''
-        Updates the view count
-        '''
-        self.views += val
+        if title is not None:       self.title = title
+        if content is not None:     self.content = content
+        if tags is not None:        self.tags = tags
+        self.last_updated = str(datetime.now())
         self.save()
 
     @classmethod
@@ -156,7 +121,6 @@ class Comments(models.Model):
     
     Functions:
         - updateComment(new_content): Updates the content of the comment.
-        - deleteComment(): Deletes the comment.
         - filterComments(text): Returns comments that match the given text in author name, title, or content.
         - getComments(blog_id): Returns comments associated with the given blog ID.
 
@@ -166,10 +130,6 @@ class Comments(models.Model):
 
         # Updating a comment
         new_comment.updateComment("Updated comment")
-
-        # Deleting a comment
-        new_comment.deleteComment()
-        
         # Filtering comments
         filtered_comments = Comments.filterComments("example")
 
@@ -180,14 +140,14 @@ class Comments(models.Model):
     # id = models.CharField(max_length=255,primary_key=True)
     author = models.ForeignKey(CustomUserDetails,on_delete=models.CASCADE)
     content = models.TextField(default="")
-    time = models.DateTimeField(default=datetime.now())
-    last_updated = models.DateTimeField(default=datetime.now())
+    time = models.CharField(default=str(datetime.now()), max_length = 40)
+    last_updated = models.CharField(default=str(datetime.now()), max_length = 40)
     blog_id = models.ForeignKey(Blogs,on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     
-    def updateComment(self,content,last_updated):
+    def updateComment(self,content = None):
         '''
         Update the content of the comment.
 
@@ -197,41 +157,8 @@ class Comments(models.Model):
         Returns:
             None
         '''
-        self.content = content
-        self.last_updated = last_updated
-        self.save()
-
-    def deleteComment(self):
-        '''
-        Delete the comment.
-
-        Args:
-            None
-
-        Returns:
-            None
-        '''
-        self.delete()
-
-    def update_dislikes(self, val):
-        '''
-        Updates the dislike count
-        '''
-        self.dislikes += val
-        self.save()
-        
-    def update_likes(self, val):
-        '''
-        Updates the like count
-        '''
-        self.likes += val
-        self.save()
-        
-    def update_views(self, val):
-        '''
-        Updates the view count
-        '''
-        self.views += val
+        if content is not None:    self.content = content
+        self.last_updated = str(datetime.now())
         self.save()
         
     @classmethod

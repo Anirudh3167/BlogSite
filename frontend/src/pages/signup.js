@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { LoginUser } from './api/user-authentication';
 import Head from 'next/head';
+import axios from 'axios';
+import { createUser } from '@/apiFunctions';
 
 export default function SignUp() {
     // Variables
@@ -11,20 +13,12 @@ export default function SignUp() {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const router = useRouter();
+    const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     const submit = async (e) => {
         e.preventDefault();
-
-        await fetch("http://127.0.0.1:8000/api/register",{
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body:  JSON.stringify({
-                "username":username, 
-                "email":email, 
-                "password":password
-            }),
-        });
-        await router.push('/profile');
+        // const res = await axios.post(backend_url + "/api/register",{username,email,password},{withCredentials:true}).then(r=>r.data);
+        if ((await createUser({username,email,password})).status) router.push(`/profile/${username}`);
     }
     // Page code.
   return (

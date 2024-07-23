@@ -54,6 +54,7 @@
 
     background-color: rgb(170,170,170);
     color: rgb(20,20,20);
+    cursor: pointer;
 }
 
 .photoSpace {
@@ -93,6 +94,16 @@
     margin: 10px;
     margin-top: 0px;
     font-size: 24px;
+}
+
+.FollowBtn {
+    display: flex;  align-items: center;    justify-content: center;
+
+    width: auto;    height: auto;
+
+    padding: 10px;  font-size: 18px;    border-radius: 10px;
+
+    color: white;   background-color: blue;
 }
 
 .detailsSpace {
@@ -201,18 +212,35 @@
     
     margin: 10px;   padding: 10px;  font-size: 20px;  overflow-y: auto;
     border: 1px solid rgb(141 135 135 / 74%);    border-radius: 10px;
+    margin-bottom: 20px;
 
     color: white;
 }
 
 .userblog {
-    display: flex;      align-items: center;    justify-content: flex-start;
-    flex-direction: row;
+    display: flex;      align-items: center;    justify-content: space-between;
+    flex-direction: row;    flex-wrap: wrap;
 
     max-width: 100%;    min-width: 280px;   width: 100%;    height: auto;
 
     padding: 10px;  border: 1px solid rgb(171 175 175 / 84%);    border-radius: 10px;
-    font-size: 18px;
+    font-size: 18px;    gap: 10px;
+}
+
+.deleteBlogBtn {
+    display: flex;  align-items: center;    justify-content: center;
+    
+    width: auto;    height: 100%;
+
+    padding: 10px;  border-radius: 10px;    background-color: red;  color: white;
+    cursor: pointer;
+}
+
+.SectionHead {
+    display: flex;  align-items: flex-start;    justify-content: flex-start;
+
+    width: 100%;    padding-left: 20px;
+    font-size: 28px;    font-weight: 700;   color: white;
 }
 
 .newBlog {
