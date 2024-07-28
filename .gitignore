@@ -5,6 +5,7 @@ VirtualEnv/
 */node_modules/
 .next/static/
 .next/*
+frontend/.next/*
 
 # Ignores the pycache in all django apps.
 */__pycache__/

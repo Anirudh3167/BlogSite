@@ -10,7 +10,9 @@ import { useRouter } from 'next/router'
 import { SlLike,SlDislike } from 'react-icons/sl'
 import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineEye, AiOutlineLike } from 'react-icons/ai'
 import { IsAuthenticated, deleteBlog, getBlog, getUser, updateBlogStats } from '@/apiFunctions'
-
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import remarkBreaks from 'remark-breaks'
 
 function BlogView() {
     const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -142,9 +144,11 @@ function BlogView() {
                 <div className={Styles.lineBreak}></div>
 
                 <div className={Styles.BlogContent}>
-                {blogData.blog.content.split('\n').map((line, idx) => {
+                {/* {blogData.blog.content.split('\n').map((line, idx) => {
                     return line === "" ? <br key={idx} /> : <p key={idx}> {line} </p>;
-                })}
+                })} */}
+                {/* {JSON.stringify(blogData.blog.content)} */}
+                <ReactMarkdown remarkPlugins={[remarkGfm]} options={{ preserveNewlines: true }} >{blogData.blog.content}</ReactMarkdown>
                 </div>
                 <div className={Styles.Stats}> 
                     <div className={Styles.Stats}> 

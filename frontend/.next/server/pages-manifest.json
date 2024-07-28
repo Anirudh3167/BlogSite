@@ -1,9 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/profile/[username]": "pages/profile/[username].js",
-  "/blog-view/[id]": "pages/blog-view/[id].js",
-  "/my-blogs": "pages/my-blogs.js",
-  "/feed": "pages/feed.js"
-}

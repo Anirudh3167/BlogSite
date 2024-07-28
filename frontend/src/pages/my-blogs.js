@@ -99,7 +99,7 @@ export default function Feed() {
                                 </div>
                             </div>
                             <div className={Styles.blogBottomDetails}>
-                                - by <Link href={`/profile/${blog.author}`} target='_blank' className={Styles.blogAuthor}>{blog.author}</Link> | {blog.time}
+                                - by <Link href={`/profile/${blog.author}`} target='_blank' className={Styles.blogAuthor}>{blog.author}</Link> | {blog.time.slice(0,19)}
                             </div>
                         </div>
                     </div>

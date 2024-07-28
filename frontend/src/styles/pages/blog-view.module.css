@@ -108,12 +108,14 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    flex-direction: column;
     flex-wrap: wrap;
 
     min-height: 400px;
     width: calc(100% - 60px);
     min-width: 280px;
 
+    gap: 10px;
     padding: 20px;
     font-size: 20px;
 
